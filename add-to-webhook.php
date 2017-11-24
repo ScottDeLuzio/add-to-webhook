@@ -68,6 +68,7 @@ function filter_woocommerce_webhook_payload__conditional_checkout_fields( $paylo
 			'category'		=>	$category,
 			'product_id'	=>	$item->get_variation_id() ? $item->get_variation_id() : $item->get_product_id(),
 			'sku'			=>	is_object( $product ) ? $product->get_sku() : null,
+			'player_name'	=>	wc_get_order_item_meta( $item_id, 'Player Name' ),
 		);
 
 		$payload[$type][]	= $data;
