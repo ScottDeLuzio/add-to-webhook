@@ -17,6 +17,8 @@ function filter_woocommerce_webhook_payload__conditional_checkout_fields( $paylo
 		return $payload;
 	}
 
+	date_default_timezone_set( get_option( 'timezone_string' ) );
+
 	$order = wc_get_order( $resource_id );
 
 	$field_count 	= get_option( 'pro_conditional_fields_qty' );
@@ -42,7 +44,6 @@ function filter_woocommerce_webhook_payload__conditional_checkout_fields( $paylo
 			}
 		}
 	}
-	date_default_timezone_set( get_option( 'timezone_string' ) );
 	foreach( $order->get_items() as $item_id => $item ){
 		$product_id	= $item->get_product_id();
 		$term_list	= wp_get_post_terms( $product_id, 'product_cat', array( 'fields'=>'ids' ) );
